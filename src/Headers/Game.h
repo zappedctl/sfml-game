@@ -2,12 +2,15 @@
 #define GAME_H
 
 #include "../Headers.h"
+#include "Player.h"
 
 class Game
 {
   private:
     sf::RenderWindow* window;
     sf::Event sfEvent;
+
+    Player player;
 
     // Initializers
     void initWindow();
@@ -19,9 +22,11 @@ class Game
 
     // Update Functions
     void updateSFMLEvents();
+    void updatePlayer();
     void update();
 
     // Render Functions
+    void renderPlayer();
     void render();
     
     // Functions

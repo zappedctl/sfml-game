@@ -38,16 +38,28 @@ void Game::updateSFMLEvents()
   }
 }
 
+void Game::updatePlayer()
+{
+  this->player.update();
+}
+
 void Game::update()
 {
   this->updateSFMLEvents();
+  this->updatePlayer();
 }
 
 // Render Functions
 
+void Game::renderPlayer()
+{
+  this->player.render(*this->window);
+}
+
 void Game::render()
 {
   this->window->clear();
+  this->renderPlayer();
   this->window->display();
 }
 
