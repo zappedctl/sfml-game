@@ -8,9 +8,17 @@ void Game::initWindow()
   this->window->setFramerateLimit(60);
 }
 
+void Game::initBackgroundTextures()
+{
+  sf::Texture* grassTexture = new sf::Texture();
+  grassTexture->loadFromFile("src/Textures/grass.png");
+
+  this->backgroundTextures.push_back(grassTexture);
+}
+
 void Game::initBackgroundRects()
 {
-  BackgroundRect* grassBackgroundRect = new BackgroundRect("src/Textures/grass.png");
+  BackgroundRect grassBackgroundRect(this->backgroundTextures[0]);
 
   this->backgroundRects.push_back(grassBackgroundRect);
 }
@@ -20,6 +28,7 @@ void Game::initBackgroundRects()
 Game::Game()
 {
   this->initWindow();
+  this->initBackgroundTextures();
   this->initBackgroundRects();
 }
 
@@ -93,7 +102,7 @@ void Game::renderBackgroundRects()
 {
   for (int i = 0; i < this->backgroundRects.size(); i++)
   {
-    this->backgroundRects[i]->render(*this->window);
+    this->backgroundRects[i].render(*this->window);
   }
 }
 

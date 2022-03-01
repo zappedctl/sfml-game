@@ -1,27 +1,26 @@
 #include "../Headers/BackgroundRect.h"
 
+void BackgroundRect::initSprite()
+{
+  this->sprite.setTexture(*this->texture);
+}
+
 // Constructor and Destructor
 
-BackgroundRect::BackgroundRect(std::string texturePath)
+BackgroundRect::BackgroundRect(sf::Texture* texture)
 {
-  sf::Texture texture;
-  if(!texture.loadFromFile(texturePath))
-  {
-    std::cout << "BACKGROUNDRECT::ERROR::CANT_LOAD_TEXTURE" << std::endl;
-  }
-
-  this->sprite = new sf::Sprite();
-  sprite->setTexture(texture);
+  this->texture = texture;
+  this->initSprite();
 }
 
 BackgroundRect::~BackgroundRect()
 {
-  delete this->sprite;
+
 }
 
 // Functions
 
 void BackgroundRect::render(sf::RenderTarget& target)
 {
-  target.draw(*this->sprite);
+  target.draw(this->sprite);
 }

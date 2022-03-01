@@ -19,10 +19,12 @@ class Game
     sf::Clock dtClock;
     float dt;
 
-    std::vector<BackgroundRect*> backgroundRects;
+    std::vector<sf::Texture*> backgroundTextures;
+    std::vector<BackgroundRect> backgroundRects;
 
     // Initializers
     void initWindow();
+    void initBackgroundTextures();
     void initBackgroundRects();
 
   public:

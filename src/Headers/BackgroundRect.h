@@ -6,11 +6,15 @@
 class BackgroundRect
 {
   private:
-    sf::Sprite* sprite;
+    sf::Texture* texture;
+    sf::Sprite sprite;
+
+    // Initializers
+    void initSprite();
 
   public:
     // Constructor and Destructor
-    BackgroundRect(std::string texturePath);
+    BackgroundRect(sf::Texture* texture);
     virtual ~BackgroundRect();
     
     // Functions
