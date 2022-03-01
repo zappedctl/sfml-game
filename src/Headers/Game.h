@@ -4,6 +4,8 @@
 #include "../Headers.h"
 #include "Player.h"
 
+class Player;
+
 class Game
 {
   private:

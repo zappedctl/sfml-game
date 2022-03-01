@@ -9,9 +9,14 @@ class Player
     sf::Texture texture;
     sf::Sprite sprite;
 
+    // Physics
+    sf::Vector2f accelaration;
+    float accelarationSpeed;
+
     // Initializers
     void initTexture();
     void initSprite();
+    void initPhysics();
 
   public:
     // Constructor and Destructor
@@ -19,6 +24,8 @@ class Player
     virtual ~Player();
 
     // Functions
+    void updateMovement();
+    void updatePhysics();
     void update();
     void render(sf::RenderTarget& target);
 };

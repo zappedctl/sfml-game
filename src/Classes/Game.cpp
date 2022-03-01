@@ -48,7 +48,6 @@ void Game::updateSFMLEvents()
 void Game::updateDt()
 {
   this->dt = this->dtClock.restart().asSeconds();
-  std::cout << this->dt << std::endl;
 }
 
 void Game::updatePlayer()
