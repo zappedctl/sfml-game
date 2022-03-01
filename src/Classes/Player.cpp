@@ -20,7 +20,7 @@ void Player::initSprite()
 
 void Player::initPhysics()
 {
-  this->accelerationSpeed = 12.f;
+  this->speed = 96.f;
 }
 
 // Constructor and Destructor
@@ -43,27 +43,33 @@ void Player::updateMovement()
 {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
   {
-    this->acceleration.y -= this->accelerationSpeed * game.getDt();
+    this->acceleration.y = -1;
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
   {
-    this->acceleration.y += this->accelerationSpeed * game.getDt();
+    this->acceleration.y = 1;
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
   {
-    this->acceleration.x -= this->accelerationSpeed * game.getDt();
+    this->acceleration.x = -1;
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
   {
-    this->acceleration.x += this->accelerationSpeed * game.getDt();
+    this->acceleration.x = 1;
   }
 }
 
 void Player::updatePhysics()
 {
-  this->sprite.move(this->acceleration);
-  std::cout << this->acceleration.y << std::endl;
+  // Fixing diagonal movement causing faster speeds
+  if (std::abs(this->acceleration.x) == 1 && std::abs(this->acceleration.y) == 1) {
+    this->acceleration.x = 1 / (float)sqrt(2) * (this->acceleration.x > 0 ? 1 : -1);
+    this->acceleration.y = 1 / (float)sqrt(2) * (this->acceleration.y > 0 ? 1 : -1);
+  }    
+
+  this->sprite.move(this->acceleration * this->speed * game.getDt());
+  this->acceleration *= 0.f;
 }
 
 void Player::update()

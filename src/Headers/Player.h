@@ -11,7 +11,7 @@ class Player
 
     // Physics
     sf::Vector2f acceleration;
-    float accelerationSpeed;
+    float speed;
 
     // Initializers
     void initTexture();
