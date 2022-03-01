@@ -33,6 +33,7 @@ class Game
     void updateSFMLEvents();
     void updateDt();
     void updatePlayer();
+    void updateView();
     void update();
 
     // Render Functions

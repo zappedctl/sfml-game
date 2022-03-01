@@ -39,6 +39,10 @@ void Game::updateSFMLEvents()
         this->window->close();
         break;
 
+      case sf::Event::Resized: {
+        this->updateView();
+      }
+
       default:
         break;
     }
@@ -55,11 +59,18 @@ void Game::updatePlayer()
   this->player.update();
 }
 
+void Game::updateView()
+{
+  sf::FloatRect visibleArea(this->player.getPos().x, this->player.getPos().y, this->window->getSize().x, this->window->getSize().y);
+  this->window->setView(sf::View(visibleArea));
+}
+
 void Game::update()
 {
   this->updateSFMLEvents();
   this->updateDt();
   this->updatePlayer();
+  this->updateView();
 }
 
 // Render Functions

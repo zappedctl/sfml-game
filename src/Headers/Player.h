@@ -23,10 +23,15 @@ class Player
     Player();
     virtual ~Player();
 
-    // Functions
+    // Accessors
+    const sf::Vector2f getPos() const;
+
+    // UpdateFunctions
     void updateMovement();
     void updatePhysics();
     void update();
+
+    // Functions
     void render(sf::RenderTarget& target);
 };
 

@@ -37,7 +37,14 @@ Player::~Player()
 
 }
 
-// Functions
+// Accessors
+
+const sf::Vector2f Player::getPos() const
+{
+  return this->sprite.getPosition();
+}
+
+// Update Functions
 
 void Player::updateMovement()
 {
@@ -77,6 +84,8 @@ void Player::update()
   this->updateMovement();
   this->updatePhysics();
 }
+
+// Functions
 
 void Player::render(sf::RenderTarget &target)
 {
