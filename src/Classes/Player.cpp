@@ -20,7 +20,7 @@ void Player::initSprite()
 
 void Player::initPhysics()
 {
-  this->speed = 96.f;
+  this->speed = 192.f;
 }
 
 // Constructor and Destructor
@@ -87,7 +87,7 @@ void Player::update()
 
 // Functions
 
-void Player::render(sf::RenderTarget &target)
+void Player::render(sf::RenderTarget& target)
 {
   target.draw(this->sprite);
 }

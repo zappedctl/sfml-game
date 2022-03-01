@@ -3,6 +3,7 @@
 
 #include "../Headers.h"
 #include "Player.h"
+#include "BackgroundRect.h"
 
 class Player;
 
@@ -18,8 +19,11 @@ class Game
     sf::Clock dtClock;
     float dt;
 
+    std::vector<BackgroundRect*> backgroundRects;
+
     // Initializers
     void initWindow();
+    void initBackgroundRects();
 
   public:
     // Constructor and Destructor
@@ -37,6 +41,7 @@ class Game
     void update();
 
     // Render Functions
+    void renderBackgroundRects();
     void renderPlayer();
     void render();
     

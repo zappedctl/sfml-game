@@ -8,11 +8,19 @@ void Game::initWindow()
   this->window->setFramerateLimit(60);
 }
 
+void Game::initBackgroundRects()
+{
+  BackgroundRect* grassBackgroundRect = new BackgroundRect("src/Textures/grass.png");
+
+  this->backgroundRects.push_back(grassBackgroundRect);
+}
+
 // Constructor and Destructor
 
 Game::Game()
 {
   this->initWindow();
+  this->initBackgroundRects();
 }
 
 Game::~Game()
@@ -61,7 +69,13 @@ void Game::updatePlayer()
 
 void Game::updateView()
 {
-  sf::FloatRect visibleArea(this->player.getPos().x, this->player.getPos().y, this->window->getSize().x, this->window->getSize().y);
+  sf::FloatRect visibleArea(
+    this->player.getPos().x - this->window->getSize().x / 2 + 16,
+    this->player.getPos().y - this->window->getSize().y / 2 + 16,
+    this->window->getSize().x,
+    this->window->getSize().y
+  );
+
   this->window->setView(sf::View(visibleArea));
 }
 
@@ -75,6 +89,14 @@ void Game::update()
 
 // Render Functions
 
+void Game::renderBackgroundRects()
+{
+  for (int i = 0; i < this->backgroundRects.size(); i++)
+  {
+    this->backgroundRects[i]->render(*this->window);
+  }
+}
+
 void Game::renderPlayer()
 {
   this->player.render(*this->window);
@@ -83,6 +105,7 @@ void Game::renderPlayer()
 void Game::render()
 {
   this->window->clear();
+  this->renderBackgroundRects();
   this->renderPlayer();
   this->window->display();
 }
