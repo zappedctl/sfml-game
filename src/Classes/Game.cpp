@@ -8,12 +8,18 @@ void Game::initWindow()
   this->window->setFramerateLimit(60);
 }
 
+sf::Texture* loadTexture(std::string path)
+{
+  sf::Texture* texture = new sf::Texture();
+  texture->loadFromFile(path);
+  texture->setRepeated(true);
+
+  return texture;
+}
+
 void Game::initBackgroundTextures()
 {
-  sf::Texture* grassTexture = new sf::Texture();
-  grassTexture->loadFromFile("src/Textures/grass.png");
-  grassTexture->setRepeated(true);
-
+  sf::Texture* grassTexture = loadTexture("src/Textures/grass.png");
   this->backgroundTextures.push_back(grassTexture);
 }
 
