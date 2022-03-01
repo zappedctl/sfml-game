@@ -1,16 +1,20 @@
 #include "../Headers/BackgroundRect.h"
 
-void BackgroundRect::initSprite()
+void BackgroundRect::initShape()
 {
-  this->sprite.setTexture(*this->texture);
+  this->shape.setTexture(this->texture);
+  this->shape.setSize(sf::Vector2f(this->width, this->height));
+  this->shape.setTextureRect(sf::IntRect(0, 0, this->width, this->height));
 }
 
 // Constructor and Destructor
 
-BackgroundRect::BackgroundRect(sf::Texture* texture)
+BackgroundRect::BackgroundRect(const int width, const int height, sf::Texture* texture)
 {
+  this->width = width;
+  this->height = height;
   this->texture = texture;
-  this->initSprite();
+  this->initShape();
 }
 
 BackgroundRect::~BackgroundRect()
@@ -22,5 +26,5 @@ BackgroundRect::~BackgroundRect()
 
 void BackgroundRect::render(sf::RenderTarget& target)
 {
-  target.draw(this->sprite);
+  target.draw(this->shape);
 }

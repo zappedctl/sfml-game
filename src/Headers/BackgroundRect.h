@@ -6,15 +6,17 @@
 class BackgroundRect
 {
   private:
+    int width;
+    int height;
     sf::Texture* texture;
-    sf::Sprite sprite;
+    sf::RectangleShape shape;
 
     // Initializers
-    void initSprite();
+    void initShape();
 
   public:
     // Constructor and Destructor
-    BackgroundRect(sf::Texture* texture);
+    BackgroundRect(const int width, const int height, sf::Texture* texture);
     virtual ~BackgroundRect();
     
     // Functions

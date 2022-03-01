@@ -12,13 +12,14 @@ void Game::initBackgroundTextures()
 {
   sf::Texture* grassTexture = new sf::Texture();
   grassTexture->loadFromFile("src/Textures/grass.png");
+  grassTexture->setRepeated(true);
 
   this->backgroundTextures.push_back(grassTexture);
 }
 
 void Game::initBackgroundRects()
 {
-  BackgroundRect grassBackgroundRect(this->backgroundTextures[0]);
+  BackgroundRect grassBackgroundRect(640, 320, this->backgroundTextures[0]);
 
   this->backgroundRects.push_back(grassBackgroundRect);
 }
