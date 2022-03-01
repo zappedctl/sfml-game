@@ -10,8 +10,8 @@ class Player
     sf::Sprite sprite;
 
     // Physics
-    sf::Vector2f accelaration;
-    float accelarationSpeed;
+    sf::Vector2f acceleration;
+    float accelerationSpeed;
 
     // Initializers
     void initTexture();
