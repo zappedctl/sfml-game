@@ -4,6 +4,7 @@
 #include "../Headers.h"
 #include "Player.h"
 #include "BackgroundRect.h"
+#include "Block.h"
 
 class Player;
 
@@ -19,13 +20,17 @@ class Game
     sf::Clock dtClock;
     float dt;
 
+    std::vector<sf::Texture*> textures;
     std::vector<sf::Texture*> backgroundTextures;
     std::vector<BackgroundRect> backgroundRects;
+    std::vector<Block> blocks;
 
     // Initializers
     void initWindow();
+    void initTextures();
     void initBackgroundTextures();
     void initBackgroundRects();
+    void initBlocks();
 
   public:
     // Constructor and Destructor
@@ -44,6 +49,7 @@ class Game
 
     // Render Functions
     void renderBackgroundRects();
+    void renderBlocks();
     void renderPlayer();
     void render();
     

@@ -27,23 +27,33 @@ void Game::initWindow()
 sf::Texture* loadTexture(std::string path)
 {
   sf::Texture* texture = new sf::Texture();
-  texture->loadFromFile(path);
-  texture->setRepeated(true);
+  if(!texture->loadFromFile(path))
+  {
+    std::cout << "GAME::ERROR::CANT_LOAD_TEXTURE: " << path << std::endl;
+  }
 
+  texture->setRepeated(true);
   return texture;
+}
+
+void Game::initTextures()
+{
+  this->textures.push_back(loadTexture("src/Textures/stone.png"));
 }
 
 void Game::initBackgroundTextures()
 {
-  sf::Texture* grassTexture = loadTexture("src/Textures/grass.png");
-  this->backgroundTextures.push_back(grassTexture);
+  this->backgroundTextures.push_back(loadTexture("src/Textures/grass.png"));
 }
 
 void Game::initBackgroundRects()
 {
-  BackgroundRect grassBackgroundRect(640, 320, this->backgroundTextures[0]);
+  this->backgroundRects.push_back(BackgroundRect(640, 320, this->backgroundTextures[0]));
+}
 
-  this->backgroundRects.push_back(grassBackgroundRect);
+void Game::initBlocks()
+{
+  this->blocks.push_back(Block(0, 0, this->textures[0]));
 }
 
 // Constructor and Destructor
@@ -51,8 +61,10 @@ void Game::initBackgroundRects()
 Game::Game()
 {
   this->initWindow();
+  this->initTextures();
   this->initBackgroundTextures();
   this->initBackgroundRects();
+  this->initBlocks();
 }
 
 Game::~Game()
@@ -129,6 +141,14 @@ void Game::renderBackgroundRects()
   }
 }
 
+void Game::renderBlocks()
+{
+  for (int i = 0; i < this->blocks.size(); i++)
+  {
+    this->blocks[i].render(*this->window);
+  }
+}
+
 void Game::renderPlayer()
 {
   this->player.render(*this->window);
@@ -138,6 +158,7 @@ void Game::render()
 {
   this->window->clear();
   this->renderBackgroundRects();
+  this->renderBlocks();
   this->renderPlayer();
   this->window->display();
 }

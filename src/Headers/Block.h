@@ -9,10 +9,16 @@ class Block
     sf::Texture* texture;
     sf::Sprite sprite;
 
+    // Initializers
+    void initSprite(const int x, const int y);
+
   public:
     // Constructor and Destructor
-    Block();
+    Block(const int x, const int y, sf::Texture* texture);
     virtual ~Block();
+
+    // Functions
+    void render(sf::RenderTarget& target);
 };
 
 #endif // BLOCK_H
