@@ -4,8 +4,24 @@
 
 void Game::initWindow()
 {
-  this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "SFML");
-  this->window->setFramerateLimit(60);
+  std::ifstream ifs("src/Config/window.ini");
+
+  std::string title = "Game";
+  sf::VideoMode windowBounds(800, 600);
+  unsigned int windowFPSLimit = 60;
+  bool windowVSyncEnabled = false;
+
+  if (ifs.is_open())
+  {
+    std::getline(ifs, title);
+    ifs >> windowBounds.width >> windowBounds.height;
+    ifs >> windowFPSLimit;
+    ifs >> windowVSyncEnabled;
+  }
+
+  this->window = new sf::RenderWindow(windowBounds, title);
+  this->window->setFramerateLimit(windowFPSLimit);
+  this->window->setVerticalSyncEnabled(windowVSyncEnabled);
 }
 
 sf::Texture* loadTexture(std::string path)
