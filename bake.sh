@@ -8,8 +8,8 @@ then
   echo "Compiling..."
   mkdir -p build
   rm -f build/*
-  g++ -c src/Main.cpp src/Classes/*.cpp --std=c++11
-  g++ *.o -o build/$PROJECT_NAME -I src/Headers $LIBRARIES
+  g++ -c src/Main.cpp src/Classes/*.cpp src/Classes/Entities/*.cpp --std=c++11
+  g++ *.o -o build/$PROJECT_NAME -I src/Headers -I src/Headers/Entities $LIBRARIES
   rm *.o
 elif [[ $1 == "comph" ]]
 then
